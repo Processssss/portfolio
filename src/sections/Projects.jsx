@@ -6,19 +6,19 @@ const projects = [
   {
     title: "Raytracer",
     description: "Moteur 3D temps réel avec rendu de scènes et lumières.",
-    image: "/src/assets/raytracer.png",
+    image: "../assets/raytracer.png",
     stack: ["C++", "SFML"],
   },
   {
     title: "Arcade",
     description: "Plateforme de jeux rétro en C++ avec bibliothèques dynamiques.",
-    image: "/src/assets/arcade.png",
+    image: "../assets/arcade.png",
     stack: ["C++", "SDL2", "SFML", "ncurses"],
   },
   {
     title: "Bot Discord",
     description: "Bot Discord",
-    image: "/src/assets/discord_bot.svg",
+    image: "../assets/discord_bot.svg",
     stack: ["C++", "D++"],
     github: "https://github.com/processssss/Discord_Bot"
   }
