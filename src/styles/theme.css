@@ -1,0 +1,91 @@
+:root {
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-accent: #a855f7;
+  --color-secondary: #ec4899;
+  --font-main: 'Orbitron';
+  --stripe-pattern: #000000; /* bande diagonale subtile noire */
+  --color-inverse-bg: #111111;
+  --color-inverse-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  --color-bg: #121212;
+  --color-text: #f5f5f5;
+  --color-accent: #a855f7;
+  --color-secondary: #ec4899;
+  --stripe-pattern: #ffffff; /* bande diagonale claire en dark mode */
+  --color-inverse-bg: #ffffff;
+  --color-inverse-text: #111111;
+}
+
+/* .xx-mask {
+  position: fixed;
+  top: 40%;
+  left: 0%;
+  transform: rotate(0deg);
+  font-size: 30rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  color: var(--stripe-pattern);
+  opacity: 1;
+  z-index: -1;
+  pointer-events: none;
+} */
+
+/* body::before {
+  content: "";
+  position: fixed;
+  top: 10%;
+  left: 100%;
+  transform: translateX(-50%) rotate(-30deg);
+  width: 600vw;
+  height: 20vh;
+  background-color: var(--stripe-pattern);
+  z-index: -1;
+  pointer-events: none;
+} */
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  transition: background 0.3s, color 0.3s;
+  background-size: 40px 40px;
+}
+
+/* .diamond-wrapper {
+  position: fixed;
+  top: 60%;
+  left: 75%;
+  width: 6rem;
+  height: 6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.3rem;
+  transform: rotate(45deg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.diamond {
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: var(--stripe-pattern);
+  transform: rotate(-45deg);
+}
+
+[data-theme="dark"] .diamond {
+  color: var(--stripe-pattern);
+  -webkit-text-stroke: 0;
+  mix-blend-mode: difference;
+}
+
+[data-theme="light"] .diamond {
+  mix-blend-mode: white;
+} */
+
+button {
+  position: flex;
+}

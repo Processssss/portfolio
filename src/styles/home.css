@@ -1,0 +1,60 @@
+/* styles/home.css */
+.home-section {
+  padding: 3rem 2rem;
+  animation: fadeIn 1s ease-in;
+}
+
+[data-theme="dark"] .home-section h1,
+[data-theme="dark"] .home-section h2,
+[data-theme="dark"] .home-section p,
+[data-theme="dark"] .xx-mask {
+  mix-blend-mode: difference;
+}
+
+.home-section h1,
+.home-section h2,
+.home-section p,
+.xx-mask {
+  mix-blend-mode: normal;
+}
+
+.home-section h1 {
+  left: 0%;
+  font-size: 8rem;
+  text-align: left;
+  font: 'Orbitron';
+  margin-bottom: 1rem;
+}
+
+.home-section h2 {
+  font: 'Orbitron';
+  left: 0%;
+  font-size: 2rem;
+  text-align: left;
+  margin-bottom: 1rem;
+  animation: fadeIn 2s ease-in;
+}
+.home-section p {
+  font: 'Orbitron';
+  margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .home-section h1 {
+    font-size: 3rem;
+    text-align: center;
+  }
+  .home-section h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .home-section p {
+    font-size: 1rem;
+    text-align: center;
+  }
+}

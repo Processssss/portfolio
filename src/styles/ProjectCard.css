@@ -1,0 +1,29 @@
+.project-card {
+  background: var(--color-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px var(--color-inverse-bg);
+  opacity: 0.9;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px var(--color-inverse-bg);
+}
+.project-image {
+  width: 100%;
+  height: auto;
+}
+.project-content {
+  padding: 1rem;
+}
+.stack {
+  font-style: italic;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    margin-bottom: 1rem;
+  }
+}

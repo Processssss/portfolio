@@ -1,0 +1,19 @@
+.projects-section {
+  padding: 4rem 2rem;
+  background-color: --color-bg;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+[data-theme="dark"] .projects-section h2 {
+  mix-blend-mode: difference;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
