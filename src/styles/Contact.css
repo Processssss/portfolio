@@ -42,7 +42,7 @@
 
 @media (max-width: 768px) {
   .contact-methods {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
 }

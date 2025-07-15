@@ -1,20 +1,20 @@
 /* styles/home.css */
 .home-section {
+  margin: 0 auto;
+  max-width: 1100px;
   padding: 3rem 2rem;
   animation: fadeIn 1s ease-in;
 }
 
 [data-theme="dark"] .home-section h1,
 [data-theme="dark"] .home-section h2,
-[data-theme="dark"] .home-section p,
-[data-theme="dark"] .xx-mask {
+[data-theme="dark"] .home-section p {
   mix-blend-mode: difference;
 }
 
 .home-section h1,
 .home-section h2,
-.home-section p,
-.xx-mask {
+.home-section p {
   mix-blend-mode: normal;
 }
 

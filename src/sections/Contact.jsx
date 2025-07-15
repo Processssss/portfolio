@@ -1,12 +1,14 @@
 import React from 'react';
 import '../styles/Contact.css';
 import { FaGithub, FaLinkedin, FaEnvelope, FaDiscord } from 'react-icons/fa';
+import ShinyText from '../components/ShinyText';
+
 
 const Contact = () => {
   return (
     <section className="contact" id="contact">
       <h2>Contact</h2>
-      <p>N'hésite pas à me contacter pour échanger autour d'un projet ou d'une opportunité.</p>
+      <ShinyText text="N'hésite pas à me contacter pour échanger autour d'un projet ou d'une opportunité." disabled={false} speed={3} className='custom-class' />
 
       <div className="contact-methods">
         <a href="mailto:felix.douaud@epitech.eu" className="contact-item" title="Envoyer un email">
