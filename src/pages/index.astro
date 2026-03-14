@@ -3,14 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { projects } from '../data/projects';
 
 const latestProjects = projects.filter((project) => project.slug === 'kablr-linux');
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 ---
 
 <BaseLayout title="Portfolio">
   <main class="shell">
     <header class="topbar fade-up">
-        <a class="brand" href="/">Process</a>
+        <a class="brand" href={withBase('/')}>Process</a>
       <nav>
-        <a href="/projects" data-i18n="navProjects">Projects</a>
+        <a href={withBase('/projects')} data-i18n="navProjects">Projects</a>
         <span>/</span>
         <a href="#contact" data-i18n="navContact">Contact</a>
       </nav>
@@ -109,7 +110,7 @@ const latestProjects = projects.filter((project) => project.slug === 'kablr-linu
               </svg>
               <span data-i18n="latestProjectsTitle">Latest Projects</span>
             </h2>
-            <a class="inline-link" href="/projects" data-i18n="seeAllProjects">See all projects</a>
+            <a class="inline-link" href={withBase('/projects')} data-i18n="seeAllProjects">See all projects</a>
           </div>
           <div class="item-list">
             {latestProjects.map((project, index) => (
@@ -119,7 +120,7 @@ const latestProjects = projects.filter((project) => project.slug === 'kablr-linu
                   <span>{new Date(project.date).toLocaleDateString('en-US')}</span>
                 </div>
                 <p data-i18n-dual data-en={project.summary} data-fr={project.summaryFr}>{project.summary}</p>
-                <a class="inline-link" href={`/projects/${project.slug}`} data-i18n="readProjectPage">Read project page</a>
+                <a class="inline-link" href={withBase(`/projects/${project.slug}`)} data-i18n="readProjectPage">Read project page</a>
               </article>
             ))}
           </div>

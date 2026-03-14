@@ -3,16 +3,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../data/projects';
 
 const sortedProjects = [...projects].sort((a, b) => b.date.localeCompare(a.date));
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 ---
 
 <BaseLayout title="Projects | Felix Douaud">
   <main class="shell projects-page">
     <header class="topbar fade-up">
-      <a class="brand" href="/">Process</a>
+      <a class="brand" href={withBase('/')}>Process</a>
       <nav>
-        <a href="/" data-i18n="navHome">Home</a>
+        <a href={withBase('/')} data-i18n="navHome">Home</a>
         <span>/</span>
-        <a class="is-active" href="/projects" data-i18n="navProjects">Projects</a>
+        <a class="is-active" href={withBase('/projects')} data-i18n="navProjects">Projects</a>
       </nav>
     </header>
 
@@ -75,7 +76,7 @@ const sortedProjects = [...projects].sort((a, b) => b.date.localeCompare(a.date)
             <article class="item" style={`animation-delay: ${index * 80}ms`}>
               <div class="item-head">
                 <h3>
-                  <a class="title-link" href={`/projects/${project.slug}`}>{project.name}</a>
+                  <a class="title-link" href={withBase(`/projects/${project.slug}`)}>{project.name}</a>
                 </h3>
                 <span>{new Date(project.date).toLocaleDateString('en-US')}</span>
               </div>

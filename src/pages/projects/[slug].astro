@@ -10,6 +10,7 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const project = slug ? projectsBySlug.get(slug) : undefined;
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 
 if (!project) {
   throw new Error(`Project not found for slug: ${slug}`);
@@ -19,13 +20,13 @@ if (!project) {
 <BaseLayout title={`${project.name} | Projects`}>
   <main class="shell">
     <header class="topbar fade-up">
-      <a class="brand" href="/">Process</a>
+      <a class="brand" href={withBase('/')}>Process</a>
       <nav>
-        <a href="/" data-i18n="navHome">Home</a>
+        <a href={withBase('/')} data-i18n="navHome">Home</a>
         <span>/</span>
-        <a href="/projects" data-i18n="navProjects">Projects</a>
+        <a href={withBase('/projects')} data-i18n="navProjects">Projects</a>
         <span>/</span>
-        <a class="is-active" href={`/projects/${project.slug}`}>{project.name}</a>
+        <a class="is-active" href={withBase(`/projects/${project.slug}`)}>{project.name}</a>
       </nav>
     </header>
 
@@ -40,7 +41,7 @@ if (!project) {
             <span data-i18n="infoTitle">Info</span>
           </h2>
           <div class="link-list">
-            <a href="/projects" data-i18n="backToProjects">Back to projects</a>
+            <a href={withBase('/projects')} data-i18n="backToProjects">Back to projects</a>
           </div>
         </section>
 
