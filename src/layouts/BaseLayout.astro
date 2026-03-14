@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Felix Douaud | Software Developer' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Minimal portfolio focused on engineering, systems and audio software." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="cursor-layer" aria-hidden="true">
+      <span class="cursor-core"></span>
+      <span class="cursor-trail trail-1"></span>
+      <span class="cursor-trail trail-2"></span>
+      <span class="cursor-trail trail-3"></span>
+      <span class="cursor-trail trail-4"></span>
+    </div>
+    <slot />
+    <footer class="site-footer">
+      <p>© {new Date().getFullYear()} Felix Douaud</p>
+    </footer>
+    <script is:inline>
+      (() => {
+        const getSavedLang = () => {
+          try {
+            const stored = localStorage.getItem('site-lang');
+            if (stored === 'fr' || stored === 'en') return stored;
+          } catch {
+            // ignore localStorage access issues
+          }
+
+          return navigator.language?.toLowerCase().startsWith('fr') ? 'fr' : 'en';
+        };
+
+        const saveLang = (lang) => {
+          try {
+            localStorage.setItem('site-lang', lang);
+          } catch {
+            // ignore localStorage access issues
+          }
+        };
+
+        const applyLangSwitchState = (lang) => {
+          document.querySelectorAll('[data-lang-switch]').forEach((button) => {
+            button.classList.toggle('is-active', button.getAttribute('data-lang-switch') === lang);
+          });
+        };
+
+        const activeLang = getSavedLang();
+        document.documentElement.lang = activeLang;
+        applyLangSwitchState(activeLang);
+
+        document.querySelectorAll('[data-lang-switch]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const nextLang = button.getAttribute('data-lang-switch');
+            if (!nextLang) return;
+            saveLang(nextLang);
+            document.documentElement.lang = nextLang;
+            applyLangSwitchState(nextLang);
+          });
+        });
+
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        if (finePointer) {
+          const layer = document.querySelector('.cursor-layer');
+          const nodes = layer
+            ? Array.from(layer.querySelectorAll('.cursor-core, .cursor-trail'))
+            : [];
+
+          let targetX = -100;
+          let targetY = -100;
+          const points = nodes.map(() => ({ x: targetX, y: targetY }));
+          const smoothing = [0.42, 0.28, 0.2, 0.14, 0.1];
+
+          const updateTarget = (event) => {
+            targetX = event.clientX;
+            targetY = event.clientY;
+            layer?.classList.add('is-visible');
+          };
+
+          const hideCursor = () => {
+            layer?.classList.remove('is-visible');
+          };
+
+          const animate = () => {
+            if (!nodes.length) return;
+
+            points[0].x += (targetX - points[0].x) * smoothing[0];
+            points[0].y += (targetY - points[0].y) * smoothing[0];
+
+            for (let i = 1; i < points.length; i += 1) {
+              points[i].x += (points[i - 1].x - points[i].x) * smoothing[i];
+              points[i].y += (points[i - 1].y - points[i].y) * smoothing[i];
+            }
+
+            nodes.forEach((node, index) => {
+              node.style.left = `${points[index].x}px`;
+              node.style.top = `${points[index].y}px`;
+            });
+
+            window.requestAnimationFrame(animate);
+          };
+
+          window.addEventListener('pointermove', updateTarget);
+          window.addEventListener('pointerleave', hideCursor);
+          window.requestAnimationFrame(animate);
+        }
+      })();
+    </script>
+  </body>
+</html>

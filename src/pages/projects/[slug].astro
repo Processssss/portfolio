@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects, projectsBySlug } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const project = slug ? projectsBySlug.get(slug) : undefined;
+
+if (!project) {
+  throw new Error(`Project not found for slug: ${slug}`);
+}
+---
+
+<BaseLayout title={`${project.name} | Projects`}>
+  <main class="shell">
+    <header class="topbar fade-up">
+      <a class="brand" href="/">Process</a>
+      <nav>
+        <a href="/" data-i18n="navHome">Home</a>
+        <span>/</span>
+        <a href="/projects" data-i18n="navProjects">Projects</a>
+        <span>/</span>
+        <a class="is-active" href={`/projects/${project.slug}`}>{project.name}</a>
+      </nav>
+    </header>
+
+    <div class="layout detail-layout">
+      <aside class="sidebar">
+        <section class="card fade-up">
+          <h2 class="mini-title section-heading">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 10v6M12 7h.01"></path>
+            </svg>
+            <span data-i18n="infoTitle">Info</span>
+          </h2>
+          <div class="link-list">
+            <a href="/projects" data-i18n="backToProjects">Back to projects</a>
+          </div>
+        </section>
+
+        <section class="card fade-up">
+          <h2 class="mini-title section-heading">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 7h18M3 12h18M3 17h18"></path>
+              <path d="M7 7a14 14 0 0 0 0 10M17 7a14 14 0 0 1 0 10"></path>
+            </svg>
+            <span data-i18n="languageTitle">Language</span>
+          </h2>
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang-switch="en">EN</button>
+            <button type="button" class="lang-btn" data-lang-switch="fr">FR</button>
+          </div>
+        </section>
+      </aside>
+
+      <article class="card content fade-up">
+        <div class="hero-preview">
+          <div class="hero-label">
+            <strong>{project.name}</strong>
+            <span>{new Date(project.date).toLocaleDateString('en-US')}</span>
+          </div>
+        </div>
+
+        <h1 class="detail-title">{project.name}</h1>
+        <p data-i18n-dual data-en={project.summary} data-fr={project.summaryFr}>{project.summary}</p>
+
+        {project.description.map((paragraph, index) => (
+          <p data-i18n-dual data-en={paragraph} data-fr={project.descriptionFr[index]}>{paragraph}</p>
+        ))}
+
+        <h2 class="section-heading">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h10M4 17h16"></path>
+          </svg>
+          <span data-i18n="featuresTitle">Features</span>
+        </h2>
+        <ul class="feature-list">
+          {project.features.map((feature, index) => (
+            <li data-i18n-dual data-en={feature} data-fr={project.featuresFr[index]}>{feature}</li>
+          ))}
+        </ul>
+
+        <h2 class="section-heading">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 7 4 9v6l4 2 4-2V9L8 7zm8 0-4 2v6l4 2 4-2V9l-4-2z"></path>
+          </svg>
+          <span data-i18n="technologiesTitle">Technologies</span>
+        </h2>
+        <p class="meta">{project.technologies.join(' · ')}</p>
+      </article>
+    </div>
+  </main>
+  <script is:inline>
+    (() => {
+      const PROJECT_DETAIL_I18N = {
+        en: {
+          navHome: 'Home',
+          navProjects: 'Projects',
+          infoTitle: 'Info',
+          backToProjects: 'Back to projects',
+          languageTitle: 'Language',
+          featuresTitle: 'Features',
+          technologiesTitle: 'Technologies'
+        },
+        fr: {
+          navHome: 'Accueil',
+          navProjects: 'Projets',
+          infoTitle: 'Informations',
+          backToProjects: 'Retour aux projets',
+          languageTitle: 'Langue',
+          featuresTitle: 'Fonctionnalités',
+          technologiesTitle: 'Technologies'
+        }
+      };
+
+      const getSavedLang = () => {
+        try {
+          const stored = localStorage.getItem('site-lang');
+          if (stored === 'fr' || stored === 'en') return stored;
+        } catch {}
+        return document.documentElement.lang === 'fr' ? 'fr' : 'en';
+      };
+
+      const applyLanguage = (lang) => {
+        const dict = PROJECT_DETAIL_I18N[lang] ?? PROJECT_DETAIL_I18N.en;
+        document.querySelectorAll('[data-i18n]').forEach((node) => {
+          const key = node.getAttribute('data-i18n');
+          if (!key || !dict[key]) return;
+          node.textContent = dict[key];
+        });
+        document.querySelectorAll('[data-i18n-dual]').forEach((node) => {
+          const text = node.getAttribute(`data-${lang}`);
+          if (text) node.textContent = text;
+        });
+      };
+
+      applyLanguage(getSavedLang());
+      document.querySelectorAll('[data-lang-switch]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const lang = button.getAttribute('data-lang-switch');
+          if (lang === 'fr' || lang === 'en') applyLanguage(lang);
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

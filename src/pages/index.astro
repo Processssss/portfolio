@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../data/projects';
+
+const latestProjects = projects.filter((project) => project.slug === 'kablr-linux');
+---
+
+<BaseLayout title="Portfolio">
+  <main class="shell">
+    <header class="topbar fade-up">
+        <a class="brand" href="/">Process</a>
+      <nav>
+        <a href="/projects" data-i18n="navProjects">Projects</a>
+        <span>/</span>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="card profile fade-up">
+          <div class="avatar" aria-hidden="true">FD</div>
+          <h1>Felix Douaud</h1>
+          <p class="role" data-i18n="role">Software Developer</p>
+          <p class="stack">C++ / Systems / Audio</p>
+        </section>
+
+        <section class="card fade-up">
+          <h2 class="mini-title section-heading">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="8" cy="12" r="3.2"></circle>
+              <circle cx="16" cy="8" r="2.7"></circle>
+              <circle cx="16" cy="16" r="2.7"></circle>
+              <path d="M10.9 10.6 13.1 9.4M10.9 13.4 13.1 14.6"></path>
+            </svg>
+            <span data-i18n="socialsTitle">Socials</span>
+          </h2>
+          <div class="link-list socials-links">
+            <a class="link-with-icon" href="https://github.com/Processssss" target="_blank" rel="noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 18c-4 1.2-4-2-6-2m12 4v-3.1a2.7 2.7 0 0 0-.8-2.1c2.6-.3 5.3-1.3 5.3-5.8a4.5 4.5 0 0 0-1.2-3.2 4.2 4.2 0 0 0-.1-3.1s-1-.3-3.2 1.2a11 11 0 0 0-6 0C6.8 2.4 5.8 2.7 5.8 2.7a4.2 4.2 0 0 0-.1 3.1A4.5 4.5 0 0 0 4.5 9c0 4.5 2.7 5.5 5.3 5.8a2.7 2.7 0 0 0-.8 2.1V20"></path>
+              </svg>
+              GitHub
+            </a>
+            <a class="link-with-icon social-right" href="mailto:felix.douaud@epitech.eu">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m4 7 8 6 8-6"></path>
+              </svg>
+              Mail
+            </a>
+            <a class="link-with-icon" href="https://www.linkedin.com/in/felixdouaud" target="_blank" rel="noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <path d="M2 9h4v12H2zM4 4.5A2.5 2.5 0 1 1 4 9a2.5 2.5 0 0 1 0-4.5z"></path>
+              </svg>
+              LinkedIn
+            </a>
+            <a class="link-with-icon social-right" href="https://discord.com/users/321289289164128265" target="_blank" rel="noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 17c-2.2 0-4-1.8-4-4V8.5A3.5 3.5 0 0 1 7.5 5h9A3.5 3.5 0 0 1 20 8.5V13a4 4 0 0 1-4 4H9l-3 2v-2h2z"></path>
+                <circle cx="10" cy="11" r="1"></circle>
+                <circle cx="14" cy="11" r="1"></circle>
+              </svg>
+              Discord
+            </a>
+          </div>
+        </section>
+
+        <section class="card fade-up">
+          <h2 class="mini-title section-heading">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 7h18M3 12h18M3 17h18"></path>
+              <path d="M7 7a14 14 0 0 0 0 10M17 7a14 14 0 0 1 0 10"></path>
+            </svg>
+            <span data-i18n="languageTitle">Language</span>
+          </h2>
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn is-active" data-lang-switch="en">EN</button>
+            <button type="button" class="lang-btn" data-lang-switch="fr">FR</button>
+          </div>
+        </section>
+      </aside>
+
+      <div class="content">
+        <section class="card fade-up">
+          <h2 class="section-heading">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.2"></circle>
+              <path d="M5 20a7 7 0 0 1 14 0"></path>
+            </svg>
+            <span data-i18n="aboutTitle">About me</span>
+          </h2>
+          <p data-i18n="aboutP1">
+            I build software with an engineering-first mindset: clear architecture, predictable behavior, and high
+            performance.
+          </p>
+          <p data-i18n="aboutP2">
+            My focus areas are systems programming, realtime audio, and practical developer tooling.
+          </p>
+        </section>
+
+        <section class="card fade-up">
+          <div class="section-head-row">
+            <h2 class="section-heading">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="6" width="18" height="12" rx="2"></rect>
+                <path d="M9 6v12M9 12h1.5m4 0h1.5"></path>
+              </svg>
+              <span data-i18n="latestProjectsTitle">Latest Projects</span>
+            </h2>
+            <a class="inline-link" href="/projects" data-i18n="seeAllProjects">See all projects</a>
+          </div>
+          <div class="item-list">
+            {latestProjects.map((project, index) => (
+              <article class="item" style={`animation-delay: ${index * 90}ms`}>
+                <div class="item-head">
+                  <h3>{project.name}</h3>
+                  <span>{new Date(project.date).toLocaleDateString('en-US')}</span>
+                </div>
+                <p data-i18n-dual data-en={project.summary} data-fr={project.summaryFr}>{project.summary}</p>
+                <a class="inline-link" href={`/projects/${project.slug}`} data-i18n="readProjectPage">Read project page</a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="card fade-up" id="contact">
+          <h2 class="section-heading">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="m4 7 8 6 8-6"></path>
+            </svg>
+            <span data-i18n="contactTitle">Contact</span>
+          </h2>
+          <div class="link-list">
+            <a href="mailto:felix.douaud@epitech.eu">felix.douaud@epitech.eu</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script is:inline>
+    const HOME_I18N = {
+      en: {
+        navProjects: 'Projects',
+        navContact: 'Contact',
+        role: 'Software Developer',
+        languageTitle: 'Language',
+        socialsTitle: 'Socials',
+        aboutTitle: 'About me',
+        aboutP1:
+          'I build software with an engineering-first mindset: clear architecture, predictable behavior, and high performance.',
+        aboutP2: 'My focus areas are systems programming, realtime audio, and practical developer tooling.',
+        latestProjectsTitle: 'Latest Projects',
+        seeAllProjects: 'See all projects',
+        readProjectPage: 'Read project page',
+        contactTitle: 'Contact'
+      },
+      fr: {
+        navProjects: 'Projets',
+        navContact: 'Contact',
+        role: 'Developpeur logiciel',
+        languageTitle: 'Langue',
+        socialsTitle: 'Reseaux',
+        aboutTitle: 'A propos de moi',
+        aboutP1:
+          'Je developpe des logiciels avec une approche orientee ingenierie : architecture claire, comportement previsible et performances solides.',
+        aboutP2:
+          'Je me concentre sur la programmation systeme, l audio temps reel et les outils de developpement pragmatiques.',
+        latestProjectsTitle: 'Derniers projets',
+        seeAllProjects: 'Voir tous les projets',
+        readProjectPage: 'Voir la page du projet',
+        contactTitle: 'Contact'
+      }
+    };
+
+    const applyLanguage = (lang) => {
+      const dict = HOME_I18N[lang] ?? HOME_I18N.en;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const key = node.getAttribute('data-i18n');
+        if (!key || !dict[key]) return;
+        node.textContent = dict[key];
+      });
+
+      document.querySelectorAll('[data-lang-switch]').forEach((button) => {
+        button.classList.toggle('is-active', button.getAttribute('data-lang-switch') === lang);
+      });
+
+      document.querySelectorAll('[data-i18n-dual]').forEach((node) => {
+        const nextText = node.getAttribute(`data-${lang}`);
+        if (nextText) node.textContent = nextText;
+      });
+    };
+
+    const getSavedLang = () => {
+      try {
+        const stored = localStorage.getItem('site-lang');
+        if (stored === 'fr' || stored === 'en') return stored;
+      } catch {
+        // ignore localStorage access issues
+      }
+
+      return navigator.language?.toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    };
+
+    const saveLang = (lang) => {
+      try {
+        localStorage.setItem('site-lang', lang);
+      } catch {
+        // ignore localStorage access issues
+      }
+    };
+
+    const defaultLang = getSavedLang();
+    applyLanguage(defaultLang);
+
+    document.querySelectorAll('[data-lang-switch]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const nextLang = button.getAttribute('data-lang-switch');
+        if (!nextLang) return;
+        saveLang(nextLang);
+        applyLanguage(nextLang);
+      });
+    });
+  </script>
+</BaseLayout>

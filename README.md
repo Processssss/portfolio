@@ -1,12 +1,24 @@
-# React + Vite
+# Portfolio (Astro + Tailwind + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup
 
-Currently, two official plugins are available:
+```bash
+npm install
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Scripts
 
-## Expanding the ESLint configuration
+- `npm run dev` - local dev server
+- `npm run build` - production build
+- `npm run preview` - preview build
+- `npm run check` - Astro type/content checks
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Structure
+
+- `src/pages/index.astro`: home page
+- `src/pages/projects/index.astro`: projects listing
+- `src/pages/projects/[slug].astro`: one page per project
+- `src/data/projects.ts`: centralized project content
+- `src/layouts/BaseLayout.astro`: HTML shell
+- `src/styles/global.css`: global style and theme
